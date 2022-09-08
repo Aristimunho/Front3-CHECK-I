@@ -1,0 +1,224 @@
+//Cores
+$primaryColor: rgb(255, 248, 240); 
+$secondaryColor: rgb(236, 134, 9);
+
+//mixin para utilitários no eixo X
+@mixin utilitario_x($marginLeft,$marginRight){
+    margin-left:  $marginLeft;
+    margin-right: $marginRight;
+}
+
+//mixin para utilitários no eixo Y
+@mixin utilitario_y($marginTop,$marginBottom){
+    margin-top: $marginTop;
+    margin-bottom: $marginBottom;
+}
+
+//mixin de altura e largura 
+@mixin heightWidth($height,$width){
+    height: $height;
+    width: $width;
+}
+
+* {box-sizing: border-box;}
+
+html {scroll-behavior:smooth;}
+
+body {
+    background-color: rgb(22, 22, 22);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color:$primaryColor;
+    padding: 0;
+    margin: 0;
+    overflow-x:hidden;
+}
+
+/*Layout(s)*/
+
+.l-app {@include heightWidth(100vh,100vw);}
+
+.l-sidebar {
+    @include heightWidth(100vh,250px);
+    background-color: black;
+    padding: 100px 25px 0;
+    position: fixed;
+    min-width: 250px;
+    top: 0;
+    left: 0;
+    transform: translateX(-250px); 
+    z-index: 1;
+
+    &:after {
+        color: $primaryColor;
+        font-family: Arial rgb(0, 0, 0), Arial, sans-serif;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.l-sidebar__btn {
+    background-color: transparent;
+    border: none;
+    color: $primaryColor;
+    font-size: 1.5rem;
+    position: absolute;
+    margin: 50px;
+    cursor:pointer;
+}
+
+.l-sidebar--open {
+    transition: all .5s;
+    transform: translateX(0);
+}
+
+.l-sidebar--close {
+    transition: all .5s;
+    transform: translateX(-250px);
+}
+
+.l-logo {
+    font-size: 1.8rem;
+    color: $primaryColor;
+    margin-bottom: 75px;
+}
+
+.l-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+    width: 100%;
+}
+
+.bg__profile {
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/01/10/29/dog-1787835_960_720.jpg");
+    background-repeat: no-repeat;
+    background-position: top right;
+    @include heightWidth(100vh,100vw);
+    
+}
+
+/*Componente(s)*/
+
+.c-sidebar {
+    display: flex;
+    font-family: Arial rgb(0, 0, 0), Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.c-nav {
+    display: flex;
+    font-family: Arial Black, Arial, Helvetica, sans-serif;
+    gap: 25px;
+}
+
+.c-nav__item{
+    font-size: 24px;
+    color: $primaryColor;
+    text-decoration: none;
+}
+
+.c-nav__itemgit{
+    background-image: url(https://camo.githubusercontent.com/5fca3db52c463447c36cbf864b01eac247219e56ce24dc0169a66c62ae53a481/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6475334a336358797a686a3735494f6776412f67697068792e676966);
+    background-size: contain;
+    @include heightWidth(45px,45px);
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.c-nav__itemlink{
+    background-image: url(https://c.tenor.com/2ZexrTx-QSQAAAAS/linkedin.gif);
+    background-size: contain;
+    @include heightWidth(45px,45px);
+    border-radius: 10px;
+}
+
+.c-nav__itemgmail{
+    background-image: url(https://c.tenor.com/MVivIRWqV9cAAAAC/classic-gmail-logo.gif);
+    background-size: contain;
+    @include heightWidth(45px,60px);
+    border-radius: 10px;
+}
+
+.c-btn{
+    background-color: gray;
+    border: none;
+    border-radius: 5px;
+    color: $primaryColor;
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 24px;
+    padding: 5px 10px;
+    text-decoration: none;
+    &:hover{
+        transition: 300ms;
+        background-color:$secondaryColor;
+    }
+}
+
+.c-form {
+    padding: 50px 0;
+    display: grid;
+    gap: 20px;
+    align-items: center;
+}
+
+.c-form__group,
+.c-form__label,
+.c-form__control {
+    display: block;
+    border-radius: 5px;
+}
+
+.c-form__control::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.c-form__label {
+    font-size: .8rem;
+    margin-bottom: 5px;
+}
+
+.c-form__control {
+    padding: 10px;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Texto */
+.title {
+    color: $primaryColor;
+    font-size: 2.5rem;
+}
+
+.description {
+    color:$secondaryColor;
+    font-size: 1.3rem;
+    background-color:#161616;
+    width: 32vw;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+/* Utilitários */
+
+.u-mx-1 {@include utilitario_x(5px,5px)}
+
+.u-mx-2 {@include utilitario_x(15px,15px)}
+
+.u-mx-3 {@include utilitario_x(25px,25px)}
+
+.u-my-1 {@include utilitario_y(5px,5px)}
+
+.u-my-2 {@include utilitario_y(15px,15px)}
+
+.u-my-3 {@include utilitario_y(25px,25px)}
+
+.u-text-align-end{
+    text-align: end;
+    cursor:context-menu;
+    color: $secondaryColor;
+}
